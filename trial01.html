@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>click demo</title>
+  <style>
+  p {
+    color: red;
+    margin: 5px;
+    cursor: pointer;
+  }
+  p:hover {
+    background: yellow;
+  }
+  </style>
+  <style type="text/css"> 
+    body {margin: 30px;} 
+    </style> 
+  <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+</head>
+
+<body>
+ 
+    <!DOCTYPE html> 
+<html> 
+<script type="text/javascript"> 
+function createTable()
+{
+ rn = window.prompt("Input number of rows", 1);
+ cn = window.prompt("Input number of columns",1);
+  var checkbox
+  var btn
+ for(var r=0;r<parseInt(rn,10);r++)
+  {
+   var x=document.getElementById('myTable').insertRow(r);
+   
+   for(var c=0;c<parseInt(cn,10);c++)  
+    {
+     var y=  x.insertCell(c);
+     y.innerHTML="Row-"+r+" Column-"+c; 
+     y.className = "Row-"+r+"Column-"+c
+      console.log(y);
+      checkbox = document.createElement('input'); 
+      checkbox.type = "checkbox"; 
+      checkbox.name = "name"; 
+      checkbox.value = "value"; 
+      checkbox.id = "checkId"; 
+      checkbox.className = "check"+"Row-"+r+"Column-"+c
+      console.log(checkbox);
+      
+      y.appendChild(checkbox);  
+              
+    }
+   }
+
+
+}
+$(".check").click(function(){
+   console.log($("#checkId").click().val())
+    $("#checkId").slideUp();
+})
+</script>
+ 
+
+<table id="myTable" border="1"> 
+</table><form> 
+<input type="button" onclick="createTable()" value="Create the table" class="btn"> 
+<input type="button" value="merge" class="mer" hidden> 
+
+</form>
+
+<script>
+$( ".btn" ).click(function() {
+    $(".c2").show()
+    $(".mer").show()
+  $( this ).hide();
+});
+
+$( ".mer" ).click(function() {
+    // $(".Row-0Column-0").hide()
+   const a = $(".checkRow-0Column-0").is(":checked")
+   const b = $(".checkRow-0Column-1").is(":checked")
+   const c = $(".checkRow-1Column-0").is(":checked")
+   const d = $(".checkRow-1Column-1").is(":checked")
+   const t = true;
+   const f = false;
+   if(a &&  b){
+    var txt1 = "<p>Merge One Row One Col.</p>"; 
+    var txt2 = "<p></p>"
+
+       $(".Row-0Column-1").replaceWith(txt1)
+       $(".Row-0Column-0").replaceWith(txt2)
+
+   }
+   else if(c && d){
+    var txt1 = "<p>Merge Row One Col</p>"; 
+    var txt2 = "<p></p>"
+
+       $(".Row-1Column-0").replaceWith(txt1)
+       $(".Row-1Column-1").replaceWith(txt2)
+   }
+   else if(a && c){
+    var txt1 = "<p>Merge Row One Col </p>"; 
+    var txt2 = "<p></p>"
+
+       $(".Row-0Column-0").replaceWith(txt1)
+       $(".Row-1Column-0").replaceWith(txt2)
+   }
+   else if(b && d){
+    var txt1 = "<p>Merge Row One Col</p>"; 
+    var txt2 = "<p></p>"
+       $(".Row-0Column-1").replaceWith(txt1)
+       $(".Row-1Column-1").replaceWith(txt2)
+   }
+   else{
+       console.log("npt ");
+   }
+
+   
+});
+
+
+
+</script>
+ 
+</body>
+</html>
